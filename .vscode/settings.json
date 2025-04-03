@@ -1,0 +1,12 @@
+{
+  "python.autoComplete.extraPaths": [
+    "/opt/openrobots/lib/python3.8/site-packages",
+    "/home/mcamurri/git/introduction_to_robotics/robot_control",
+    "/opt/ros/noetic/lib/python3/dist-packages"
+  ],
+  "python.analysis.extraPaths": [
+    "/opt/openrobots/lib/python3.8/site-packages",
+    "/home/mcamurri/git/introduction_to_robotics/robot_control",
+    "/opt/ros/noetic/lib/python3/dist-packages"
+  ]
+}

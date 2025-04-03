@@ -12,12 +12,12 @@
     <link name = "base_link">
         <visual>
             <geometry>
-                <mesh filename="package://example-robot-data/robots/ur_description/meshes/ur5/collision/base.stl"/>
+                <mesh filename="package://ur_description/meshes/ur5/collision/base.stl"/>
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://example-robot-data/robots/ur_description/meshes/ur5/collision/base.stl"/>
+                <mesh filename="package://ur_description/meshes/ur5/collision/base.stl"/>
             </geometry>
         </collision>
         <inertial>
@@ -40,13 +40,13 @@
     <link name="shoulder_link">
         <visual>
             <geometry>
-                <mesh filename="package://example-robot-data/robots/ur_description/meshes/ur5/collision/shoulder.stl"/>
+                <mesh filename="package://ur_description/meshes/ur5/collision/shoulder.stl"/>
             </geometry>
         </visual>
         <collision>
             <!-- <origin rpy="0 0 0" xyz="0 0 0.2" /> -->
             <geometry>
-                <mesh filename="package://example-robot-data/robots/ur_description/meshes/ur5/collision/shoulder.stl"/>
+                <mesh filename="package://ur_description/meshes/ur5/collision/shoulder.stl"/>
             </geometry>
         </collision>
         <inertial>

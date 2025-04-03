@@ -63,6 +63,7 @@ position_diff = x - T_0e[:3,3]
 rotation_diff = o - T_0e[:3,:3]
 print("Direct Kinematics - ee position, differece with Pinocchio library:", position_diff)
 print("Direct Kinematics - ee orientation, differece with Pinocchio library:\n", rotation_diff)
+print("------------------------------------------")
 
 #################
 # exercise 2.2

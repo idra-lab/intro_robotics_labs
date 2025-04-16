@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #common stuff 
 import pinocchio as pin
 from pinocchio.utils import *
@@ -7,12 +8,12 @@ import math
 import time as tm
 
 import os
-from base_controllers.utils.common_functions import *
-from base_controllers.utils.ros_publish import RosPub
-from base_controllers.utils.kin_dyn_utils import RNEA
-from base_controllers.utils.kin_dyn_utils import getM
-from base_controllers.utils.kin_dyn_utils import getg
-from base_controllers.utils.kin_dyn_utils import getC
+from utils.common_functions import *
+from utils.ros_publish import RosPub
+from utils.kin_dyn_utils import RNEA
+from utils.kin_dyn_utils import getM
+from utils.kin_dyn_utils import getg
+from utils.kin_dyn_utils import getC
 
 
 import L1_conf as conf

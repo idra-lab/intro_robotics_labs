@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 #common stuff
 from __future__ import print_function
 import pinocchio as pin
@@ -7,8 +5,8 @@ from numpy import nan
 import math
 import time as tm
 
-from utils.common_functions import *
-from utils.ros_publish import RosPub
+from base_controllers.utils.common_functions import *
+from base_controllers.utils.ros_publish import RosPub
 
 import L2_conf as conf
 
@@ -22,9 +20,7 @@ robot = getRobotModel("ur5")
 zero = np.array([0.0, 0.0,0.0, 0.0, 0.0, 0.0])
 time = 0.0
 
-two_pi_f             = 2*np.pi*conf.freq   # frequency (time 2 PI)
-two_pi_f_amp         = np.multiply(two_pi_f, conf.amp) 
-two_pi_f_squared_amp = np.multiply(two_pi_f, two_pi_f_amp)
+
 
 # Init loggers
 buffer_size = int(math.floor(conf.exp_duration/conf.dt))
@@ -63,25 +59,12 @@ contact_sampled = False
 while True:
     
     # EXERCISE 1.1: Sinusoidal reference Generation
-    q_des  = conf.q0 +   np.multiply( conf.amp, np.sin(two_pi_f*time + conf.phi))
-    qd_des = np.multiply(two_pi_f_amp , np.cos(two_pi_f*time + conf.phi))
-    qdd_des = np.multiply( two_pi_f_squared_amp , -np.sin(two_pi_f*time + conf.phi))
 
     # Set constant reference after a while
-    if time >= conf.exp_duration_sin:
-        q_des  = conf.q0
-        qd_des=zero
-        qdd_des=zero          
+
 
     # EXERCISE 1.2: Step reference Generation
-    # if time > 2.0:
-    #     q_des = conf.q0 + np.array([ 0.0, -0.4, 0.0, 0.0,  0.5, 0.0])
-    #     qd_des =  zero
-    #     qdd_des = zero
-    # else:
-    #     q_des = conf.q0
-    #     qd_des =  zero
-    #     qdd_des = zero
+
         
     # EXERCISE 2.4: Constant reference
     # q_des = conf.q0
@@ -111,14 +94,7 @@ while True:
 
         
     # EXERCISE  1.5: PD control - critical damping
-    # conf.kd[0,0] = 2*np.sqrt(conf.kp[0,0]*M[0,0])
-    # conf.kd[1,1] = 2*np.sqrt(conf.kp[1,1]*M[1,1])
-    # conf.kd[2,2] = 2*np.sqrt(conf.kp[2,2]*M[2,2])
-    # conf.kd[3,3] = 2*np.sqrt(conf.kp[3,3]*M[3,3])
-    # conf.kd[4,4] = 2*np.sqrt(conf.kp[4,4]*M[4,4])
-    # conf.kd[5,5] = 2*np.sqrt(conf.kp[5,5]*M[5,5])
-    # print (conf.kd[1,1])
-    # print (conf.kd[4,4])
+
 
     # EXERCISE  2.3: Inverse Dynamics (computed torque) - low gains
 #    conf.kp = np.eye(6)*60
@@ -131,23 +107,15 @@ while True:
                                        
     #CONTROLLERS                                    
     #Exercise 1.3:  PD control
-    tau = conf.kp.dot(q_des-q) + conf.kd.dot(qd_des-qd)
-    
+
     # Exercise 1.6: PD control + Gravity Compensation
-    #tau = conf.kp.dot(q_des-q) + conf.kd.dot(qd_des-qd)  + g
-    
+
     # Exercise 1.7: PD + gravity + Feed-Forward term   
-    #M_des = robot.mass(q_des)
-    #tau =  np.multiply(np.diag(M_des), qdd_des) + conf.kp.dot(q_des-q) + conf.kd.dot(qd_des-qd)  + g
- 
+
     # EXERCISE 2.1 Inverse Dynamics (Computed Torque)
-    #tau = M.dot(qdd_des + conf.kp.dot(q_des-q) + conf.kd.dot(qd_des-qd)) + h
 
     # EXERCISE 2.5 Inverse Dynamics (Computed Torque) - uncertainty in the cancellation   
-    # M_hat  = M*1.1
-    # h_hat  = h*1.1
-    # tau = M_hat.dot(qdd_des + conf.kp.dot(q_des-q) + conf.kd.dot(qd_des-qd)) + h_hat
-
+    
     # EXERCISE 2.6  Inverse Dynamics (Desired states)
     # M_des = robot.mass(q_des)
     # h_des = robot.nle(q_des, qd_des)
@@ -250,8 +218,4 @@ plotJoint('position', time_log, q_log, q_des_log, qd_log, qd_des_log, qdd_log, q
 #plotJoint('acceleration', time_log, q_log, q_des_log, qd_log, qd_des_log, qdd_log, qdd_des_log, tau_log)
 #plotJoint('torque', time_log, q_log, q_des_log, qd_log, qd_des_log, qdd_log, qdd_des_log, tau_log)
 plotEndeff('position', 5, time_log, p_log)
-
-plt.show(block=True)
-
-
 

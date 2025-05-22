@@ -1,6 +1,13 @@
 # intro_robotics_labs
 Python exercises for the course "Introduction to Robotics"
 
+## Dependencies
+
+```
+sudo apt install ros-noetic-ur-description python3-termcolor python3-catkin-tools python3-roslaunch
+``` 
+
+
 ## Troubleshooting
 If you are using WSL and do not see the meshes, you can try adding the following lines to your `.bashrc`:
 ```bash

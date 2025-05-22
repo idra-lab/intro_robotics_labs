@@ -5,8 +5,8 @@ from numpy import nan
 import math
 import time as tm
 
-from base_controllers.utils.common_functions import *
-from base_controllers.utils.ros_publish import RosPub
+from utils.common_functions import *
+from utils.ros_publish import RosPub
 
 import L2_conf as conf
 
